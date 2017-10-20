@@ -1,29 +1,29 @@
 "use strict";
 
 const clp = require("clp");
+const OperationWorker = require("./operations/index");
 const pathStore = './notes.json';
-const add = require('./operations/add');
-const list = require('./operations/list');
-const read = require('./operations/read');
-const remove = require('./operations/remove');
 
 const args = clp(process.argv.slice(2));
+
+let operationWorker = new OperationWorker(pathStore);
+
 switch(args['operation']){
     case 'add':
         if(args['title'] && args['body']){
-            add(args['title'], args['body'], pathStore);
+            operationWorker.add(args['title'], args['body']);
         }else{
             console.log("Error, you should set title and body with --title and --body");
         }
         break;
 
     case 'list':
-        list(pathStore);
+        operationWorker.list();
         break;
 
     case 'remove':
         if(args['title']){
-            remove(args['title'], pathStore);
+            operationWorker.remove(args['title']);
         }else{
             console.log("Error, you should set title with --title");
         }
@@ -31,12 +31,16 @@ switch(args['operation']){
 
     case 'read':
         if(args['title']){
-            read(args['title'], pathStore);
+            operationWorker.read(args['title']);
         }else{
             console.log("Error, you should set title with --title");
         }
         break;
 
     default:
-        console.log("Use correct command like: 'node index --operation=add --title=test --body=test'");
+        console.log("Use correct command like: \n'node index --operation=add --title=test --body=test'" +
+                    "\n'node index --operation=remove --title=test'" +
+                    "\n'node index --operation=read --title=test'" +
+                    "\n'node index --operation=list'"
+        );
 }
