@@ -1,7 +1,7 @@
 "use strict";
 
 const clp = require("clp");
-const OperationWorker = require("./operations/index");
+const OperationWorker = require("./operations");
 const pathStore = './notes.json';
 
 const args = clp(process.argv.slice(2));
