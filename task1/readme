@@ -1,0 +1,12 @@
+task1
+  Simple todo app
+
+Prerequisites
+  1)Install nodejs to your OS and set all environment variables for node js.
+  2)Use cmd command "npm i" from folder "task1_1".
+  
+Getting Started
+  Use cmd command "node index" from folder "task1" to get information how to use this app. 
+
+Authors
+  Siarhei Rylach
