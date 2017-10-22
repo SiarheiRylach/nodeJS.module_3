@@ -8,7 +8,7 @@ function list(pathStore) {
         if(fs.existsSync(pathStore)){
             notes = require("." + pathStore);
         }
-        console.log(notes);
+        return (notes.length > 0) ? notes : "You don't have notes";
 }
 
 module.exports = list;

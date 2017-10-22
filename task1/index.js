@@ -18,7 +18,7 @@ switch(args['operation']){
         break;
 
     case 'list':
-        operationWorker.list();
+        console.log(operationWorker.list());
         break;
 
     case 'remove':
@@ -31,7 +31,7 @@ switch(args['operation']){
 
     case 'read':
         if(args['title']){
-            operationWorker.read(args['title']);
+            console.log(operationWorker.read(args['title']));
         }else{
             console.log("Error, you should set title with --title");
         }

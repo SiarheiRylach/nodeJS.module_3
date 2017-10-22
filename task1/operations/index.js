@@ -13,11 +13,11 @@ class OperationsWorker{
     }
 
     list(path = this.pathStore){
-        list(path);
+        return list(path);
     }
 
     read(title, path = this.pathStore){
-        read(title, path);
+        return read(title, path);
     }
 
     remove(title, path = this.pathStore){

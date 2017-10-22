@@ -11,6 +11,7 @@ function add(title, body, pathStore) {
         console.log("Error! The note with this title already exist");
     }else{
         notes.push({"title": title, "body": body});
+        console.log("Successfully added");
     }
 
     fs.writeFile(pathStore, JSON.stringify(notes), (err)=>{
