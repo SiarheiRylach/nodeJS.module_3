@@ -2,6 +2,10 @@
 
 const fs = require('fs');
 
+/**
+ * @param {string} title  - title of note
+ * @param {string} pathStore - path to file with notes
+ */
 function read(title, pathStore) {
 
     let notes = [];

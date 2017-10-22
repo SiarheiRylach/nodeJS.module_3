@@ -2,6 +2,11 @@
 
 const fs = require('fs');
 
+/**
+ * @param {string} title  - title of note
+ * @param {string} body  - body of note
+ * @param {string} pathStore - path to file with notes
+ */
 function add(title, body, pathStore) {
     let notes = [];
     if(fs.existsSync(pathStore)){

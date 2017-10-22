@@ -3,7 +3,12 @@ const list = require('./list');
 const read = require('./read');
 const remove = require('./remove');
 
+
 class OperationsWorker{
+    /**
+     * Create a object which contains all functions to work with notes
+     * @param {string} pathStore - path to file with notes
+     */
     constructor(pathStore){
         this.pathStore = pathStore;
     }

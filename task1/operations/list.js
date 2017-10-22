@@ -2,6 +2,9 @@
 
 const fs = require('fs');
 
+/**
+ * @param {string} pathStore - path to file with notes
+ */
 function list(pathStore) {
 
         let notes = [];
