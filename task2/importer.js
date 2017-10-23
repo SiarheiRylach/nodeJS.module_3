@@ -11,46 +11,57 @@ class Importer{
     }
 
     import(outPath){
-        this.dirWatcher.watch(this._inputPath, 100);
+        return new Promise((resolve, reject)=>{
+            this.dirWatcher.watch(this._inputPath, 100);
 
-        this.dirWatcher.eventEmitter.on('dirwatcher:create', data=>{
-            let result = [];
-            csv()
-                .fromFile(data.path)
-                .on('json', (jsonObj) => {
-                    result.push(jsonObj);
-                })
-                .on('done', (error) => {
-                    fs.writeFile(setPathOutFile(data.path, outPath), JSON.stringify(result), (err) => {
-                        if (err) throw err;
+            this.dirWatcher.eventEmitter.on('dirwatcher:create', data=>{
+                let result = [];
+                csv()
+                    .fromFile(data.path)
+                    .on('json', (jsonObj) => {
+                        result.push(jsonObj);
+                    })
+                    .on('done', (error) => {
+                        fs.writeFile(setPathOutFile(data.path, outPath), JSON.stringify(result), (err) => {
+                            if (err) reject(err);
+                        });
+                        resolve(result);
                     });
-                });
 
-        });
-        this.dirWatcher.eventEmitter.on('dirwatcher:update', data=> {
-            let result = [];
-            csv()
-                .fromFile(data.path)
-                .on('json', (jsonObj) => {
-                    result.push(jsonObj);
-                })
-                .on('done', (error) => {
-                    fs.writeFile(setPathOutFile(data.path, outPath), JSON.stringify(result), (err) => {
-                        if (err) throw err;
+            });
+
+            this.dirWatcher.eventEmitter.on('dirwatcher:update', data=> {
+                let result = [];
+                csv()
+                    .fromFile(data.path)
+                    .on('json', (jsonObj) => {
+                        result.push(jsonObj);
+                    })
+                    .on('done', (error) => {
+                        fs.writeFile(setPathOutFile(data.path, outPath), JSON.stringify(result), (err) => {
+                            if (err) reject(err);
+                        });
+                        resolve(result);
                     });
-                });
-        });
+            });
 
-        this.dirWatcher.eventEmitter.on('dirwatcher:remove', data=> {
-            let path = setPathOutFile(data.path, outPath);
+            this.dirWatcher.eventEmitter.on('dirwatcher:remove', data=> {
+                let path = setPathOutFile(data.path, outPath);
 
-            if(fs.existsSync(path)){
-                fs.unlinkSync(path);
-            }else{
-                console.log(`File ${getNameFile(data.path)} was deleted`);
-            }
+                if(fs.existsSync(path)){
+                    fs.unlinkSync(path);
+                }else{
+                    console.log(`File ${getNameFile(data.path)} was deleted`);
+                }
+            });
+
         });
     }
+
+    importSync(outPath){
+
+    }
+
 }
 
 function getNameFile(absolutePath){

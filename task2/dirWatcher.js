@@ -42,10 +42,3 @@ function getExtentionByPath(path) {
 }
 
 module.exports = DirWatcher;
-
-
-/*
-нужно сделать класс DirWatcher , который будет следить за изменениями
-в папке data и класс Importer, который при каком-нибудь изменении/добавлении csv файлов
-будет создавать json файлы с данными из csv
- */
