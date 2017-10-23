@@ -16,21 +16,21 @@ class DirWatcher{
 
         watcher.on('create', file =>{
             if(getExtentionByPath(file) === '.csv'){
-                this.eventEmitter.emit('dirwatcher:changed', {'path':file, 'action':'create'});
+                this.eventEmitter.emit('dirwatcher:create', {'path':file});
             }
         });
 
         // Listen on file updating
         watcher.on('update', file =>{
             if(getExtentionByPath(file) === '.csv'){
-                this.eventEmitter.emit('dirwatcher:changed', {'path':file, 'action':'update'});
+                this.eventEmitter.emit('dirwatcher:update', {'path':file});
             }
         });
 
         // Listen on file removal
         watcher.on('remove', file =>{
             if(getExtentionByPath(file) === '.csv'){
-                this.eventEmitter.emit('dirwatcher:changed', {'path':file, 'action':'remove'});
+                this.eventEmitter.emit('dirwatcher:remove', {'path':file});
             }
         });
 
