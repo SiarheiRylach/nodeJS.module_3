@@ -9,6 +9,7 @@
   "author": "Siarhei Rylach",
   "license": "ISC",
   "dependencies": {
+    "clp": "^4.0.8",
     "csvtojson": "^1.1.9",
     "shelljs": "^0.7.8",
     "watch.io": "^1.0.7"
