@@ -19,7 +19,7 @@ function add(title, body, pathStore) {
         console.log("Successfully added");
     }
 
-    fs.writeFile(pathStore, JSON.stringify(notes), (err)=>{
+    fs.writeFile(pathStore, JSON.stringify(notes , null, 2), (err)=>{
         if(err) throw err;
     });
 }
