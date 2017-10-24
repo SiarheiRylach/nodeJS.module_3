@@ -1,13 +1,12 @@
 const Importer = require('./importer');
 
-const importer = new Importer();
+const importer = new Importer('./data', './output');
+const DirWatcher = require('./dirWatcher');
 
-/*importer.import('./output').then((data)=>{
-    console.log(data);
-});
-console.log("hi");*/
-console.log(importer.importSync('./output'));
+let dirWatcher = new DirWatcher();
+
+importer.listen(dirWatcher, 500);
+
 console.log("hi");
-
 
 
