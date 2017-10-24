@@ -20,7 +20,7 @@ function add(title, body, pathStore) {
     }
 
     fs.writeFile(pathStore, JSON.stringify(notes , null, 2), (err)=>{
-        if(err) throw err;
+        if(err) throw err; // to do handle err
     });
 }
 

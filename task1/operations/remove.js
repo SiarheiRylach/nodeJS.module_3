@@ -21,11 +21,12 @@ function remove(title, pathStore) {
         console.log("Note with this title doesn't exist");
     }else {
         console.log("Successfully removed");
+        fs.writeFile(pathStore, JSON.stringify(notes, null, 2), (err)=>{
+            if(err) throw err;
+        });
     }
 
-    fs.writeFile(pathStore, JSON.stringify(notes), (err)=>{
-        if(err) throw err;
-    });
+
 }
 
 module.exports = remove;
