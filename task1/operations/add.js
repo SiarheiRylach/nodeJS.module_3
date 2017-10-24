@@ -17,11 +17,13 @@ function add(title, body, pathStore) {
     }else{
         notes.push({"title": title, "body": body});
         console.log("Successfully added");
+
+        fs.writeFile(pathStore, JSON.stringify(notes , null, 2), (err)=>{
+            if(err) throw err; // to do handle err
+        });
     }
 
-    fs.writeFile(pathStore, JSON.stringify(notes , null, 2), (err)=>{
-        if(err) throw err; // to do handle err
-    });
+
 }
 
 module.exports = add;
